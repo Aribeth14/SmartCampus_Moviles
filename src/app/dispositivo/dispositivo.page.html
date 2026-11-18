@@ -1,0 +1,76 @@
+﻿<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Dispositivos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <main class="device-layout">
+    <section class="sensor-panel" aria-labelledby="sensor-title">
+      <div class="sensor-heading">
+        <h1 id="sensor-title">Acelerómetro</h1>
+        <span class="sensor-status" [class.is-active]="activo" role="status">
+          {{ iniciando ? 'Iniciando…' : activo ? 'En directo' : 'Detenido' }}
+        </span>
+      </div>
+      <p class="sensor-description">Mide la aceleración del dispositivo en tres ejes.</p>
+
+      <div class="axis-grid">
+        <div class="axis axis-x">
+          <span class="axis-label">Eje X</span>
+          <strong>{{ x.toFixed(2) }}</strong>
+          <span class="axis-unit">m/s²</span>
+        </div>
+        <div class="axis axis-y">
+          <span class="axis-label">Eje Y</span>
+          <strong>{{ y.toFixed(2) }}</strong>
+          <span class="axis-unit">m/s²</span>
+        </div>
+        <div class="axis axis-z">
+          <span class="axis-label">Eje Z</span>
+          <strong>{{ z.toFixed(2) }}</strong>
+          <span class="axis-unit">m/s²</span>
+        </div>
+      </div>
+
+      <div class="sensor-actions">
+        <ion-button class="start-button" expand="block" [disabled]="activo || iniciando"
+          (click)="iniciar()">
+          {{ iniciando ? 'Iniciando…' : 'Iniciar lectura' }}
+        </ion-button>
+        <ion-button class="stop-button" expand="block" fill="outline" [disabled]="!activo"
+          (click)="detener()">
+          Detener lectura
+        </ion-button>
+      </div>
+    </section>
+
+    <section class="storage-panel" aria-labelledby="storage-title">
+      <h2 id="storage-title">Almacenamiento local</h2>
+      <p>Guarda tu nombre en este dispositivo.</p>
+      <form (ngSubmit)="guardarNombre()">
+        <ion-input
+          name="nombre"
+          label="Nombre del estudiante"
+          labelPlacement="stacked"
+          fill="outline"
+          autocomplete="name"
+          placeholder="Escribe tu nombre"
+          [(ngModel)]="nombre">
+        </ion-input>
+        <ion-button class="save-button" type="submit" expand="block">Guardar nombre</ion-button>
+      </form>
+
+      @if (nombreGuardado) {
+        <p class="saved-name"><strong>Nombre guardado:</strong> {{ nombreGuardado }}</p>
+      }
+    </section>
+  </main>
+
+  <ion-toast
+    [isOpen]="mostrarToast"
+    [message]="mensaje"
+    [duration]="2500"
+    (didDismiss)="mostrarToast = false">
+  </ion-toast>
+</ion-content>

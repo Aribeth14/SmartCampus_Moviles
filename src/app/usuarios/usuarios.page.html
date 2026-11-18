@@ -1,0 +1,70 @@
+﻿<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <main class="campus-layout">
+    <section class="directory" aria-labelledby="directory-title">
+      <h1 id="directory-title" class="campus-section-title">Directorio de usuarios</h1>
+      <ion-searchbar
+        aria-label="Buscar usuario por nombre"
+        placeholder="Buscar usuario por nombre"
+        [debounce]="300"
+        (ionInput)="buscar($event)">
+      </ion-searchbar>
+    </section>
+
+    @if (cargando) {
+      <div class="campus-empty" role="status">
+        <ion-spinner name="crescent" aria-hidden="true"></ion-spinner>
+        <p>Cargando usuarios…</p>
+      </div>
+    } @else if (error) {
+      <div class="campus-empty">
+        <p role="alert">{{ error }}</p>
+        <ion-button (click)="obtenerUsuarios()">Reintentar</ion-button>
+      </div>
+    } @else {
+      <p class="directory-count" role="status">
+        Mostrando {{ visibles.length }} de {{ filtrados.length }} usuarios
+      </p>
+
+      <div class="user-grid">
+        @for (usuario of visibles; track usuario.id) {
+          <ion-card class="campus-card">
+            <ion-card-header>
+              <span class="avatar" aria-hidden="true">{{ usuario.name.charAt(0) }}</span>
+              <div>
+                <ion-card-title>{{ usuario.name }}</ion-card-title>
+                <p class="username">&#64;{{ usuario.username }}</p>
+              </div>
+            </ion-card-header>
+            <ion-card-content>
+              <dl>
+                <div>
+                  <dt>Correo</dt>
+                  <dd><a [href]="'mailto:' + usuario.email">{{ usuario.email }}</a></dd>
+                </div>
+                <div>
+                  <dt>Teléfono</dt>
+                  <dd>{{ usuario.phone }}</dd>
+                </div>
+              </dl>
+            </ion-card-content>
+          </ion-card>
+        } @empty {
+          <p class="campus-empty">No se encontraron usuarios.</p>
+        }
+      </div>
+
+      <ion-infinite-scroll threshold="100px" [disabled]="terminado" (ionInfinite)="cargarMas($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Cargando más usuarios…">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    }
+  </main>
+</ion-content>

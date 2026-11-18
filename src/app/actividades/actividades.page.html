@@ -1,0 +1,124 @@
+﻿<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Actividades</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <main class="campus-layout activities-layout">
+    <ion-card class="campus-card activity-form">
+      <ion-card-header>
+        <ion-card-title>Nueva actividad</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-input
+          label="Título"
+          labelPlacement="stacked"
+          fill="outline"
+          placeholder="Nombre de la actividad"
+          [(ngModel)]="nueva.titulo">
+        </ion-input>
+
+        <ion-textarea
+          label="Descripción"
+          labelPlacement="stacked"
+          fill="outline"
+          placeholder="Mínimo 10 caracteres"
+          [autoGrow]="true"
+          [(ngModel)]="nueva.descripcion">
+        </ion-textarea>
+
+        <ion-select label="Tipo" labelPlacement="stacked" fill="outline"
+          placeholder="Seleccionar tipo" [(ngModel)]="nueva.tipo">
+          <ion-select-option value="Tarea">Tarea</ion-select-option>
+          <ion-select-option value="Proyecto">Proyecto</ion-select-option>
+          <ion-select-option value="Examen">Examen</ion-select-option>
+          <ion-select-option value="Investigación">Investigación</ion-select-option>
+          <ion-select-option value="Taller">Taller</ion-select-option>
+        </ion-select>
+
+        <div class="date-field">
+          <h3 id="due-date">Fecha de entrega</h3>
+          <ion-datetime
+            presentation="date"
+            locale="es"
+            aria-labelledby="due-date"
+            [(ngModel)]="nueva.fechaEntrega">
+          </ion-datetime>
+        </div>
+
+        <fieldset>
+          <legend>Prioridad</legend>
+          <ion-radio-group aria-label="Prioridad" [(ngModel)]="nueva.prioridad">
+            <ion-radio value="Alta">Alta</ion-radio>
+            <ion-radio value="Media">Media</ion-radio>
+            <ion-radio value="Baja">Baja</ion-radio>
+          </ion-radio-group>
+        </fieldset>
+
+        <ion-checkbox [(ngModel)]="nueva.completada">Completada</ion-checkbox>
+
+        <ion-button expand="block" [disabled]="guardando" (click)="guardar()">
+          {{ guardando ? 'Guardando…' : 'Guardar actividad' }}
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <section class="activity-list" aria-labelledby="activity-list-title">
+      <h2 id="activity-list-title" class="campus-section-title">Mis actividades</h2>
+
+      @for (actividad of actividades; track actividad.id) {
+        <ion-card class="campus-card activity-card">
+          <ion-card-header>
+            <ion-card-title>{{ actividad.titulo }}</ion-card-title>
+            <ion-badge [color]="colorPrioridad(actividad.prioridad)">
+              Prioridad <span class="priority-value">{{ actividad.prioridad }}</span>
+            </ion-badge>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p class="activity-description">{{ actividad.descripcion }}</p>
+            <dl>
+              <div><dt>Tipo</dt><dd>{{ actividad.tipo }}</dd></div>
+              <div><dt>Fecha de entrega</dt><dd>{{ actividad.fechaEntrega }}</dd></div>
+            </dl>
+
+            <ion-select
+              label="Estado"
+              labelPlacement="stacked"
+              fill="outline"
+              interface="alert"
+              [value]="actividad.completada"
+              (ionChange)="cambiarEstado(actividad, $event)">
+              <ion-select-option [value]="false">Pendiente</ion-select-option>
+              <ion-select-option [value]="true">Completada</ion-select-option>
+            </ion-select>
+
+            <ion-button expand="block" color="danger" fill="outline"
+              (click)="confirmarEliminar(actividad.id!)">
+              Eliminar actividad
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      } @empty {
+        <p class="campus-empty">Todavía no hay actividades registradas.</p>
+      }
+    </section>
+  </main>
+
+  <ion-toast
+    [isOpen]="mostrarToast"
+    [message]="mensaje"
+    [duration]="2500"
+    (didDismiss)="mostrarToast = false">
+  </ion-toast>
+
+  <ion-alert
+    [isOpen]="mostrarAlerta"
+    header="Confirmar eliminación"
+    message="¿Estás seguro de que deseas eliminar esta actividad? Esta acción no se puede deshacer."
+    [buttons]="botonesAlerta"
+    (didDismiss)="mostrarAlerta = false">
+  </ion-alert>
+</ion-content>

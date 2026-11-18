@@ -1,0 +1,82 @@
+﻿.directory {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+ion-searchbar {
+  max-width: 38rem;
+  padding: 0;
+  --background: var(--campus-surface);
+  --color: var(--campus-ink);
+  --placeholder-color: var(--campus-muted);
+  --icon-color: var(--campus-accent);
+  --clear-button-color: var(--campus-accent);
+  --border-radius: 0.875rem;
+  --box-shadow: 0 0 0 1px var(--campus-border) inset;
+}
+
+.directory-count {
+  margin: 0 0 0.75rem;
+  color: var(--campus-muted);
+  font-size: 0.875rem;
+}
+
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 0.875rem;
+
+  .campus-empty {
+    grid-column: 1 / -1;
+  }
+}
+
+ion-card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  display: grid;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border-radius: 0.875rem;
+  background: var(--campus-mint);
+  color: #204c39;
+  font-size: 1.125rem;
+  font-weight: 750;
+}
+
+.username {
+  margin: 0.25rem 0 0;
+  color: var(--campus-muted);
+  overflow-wrap: anywhere;
+}
+
+dl {
+  display: grid;
+  gap: 0.625rem;
+  margin: 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--campus-border);
+}
+
+dt {
+  color: var(--campus-muted);
+  font-weight: 700;
+}
+
+dd {
+  margin: 0;
+  color: var(--campus-ink);
+  overflow-wrap: anywhere;
+}
+
+a {
+  color: var(--campus-accent);
+}

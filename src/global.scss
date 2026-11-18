@@ -35,3 +35,77 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+ion-toolbar {
+  --background: var(--campus-surface);
+  --color: var(--campus-ink);
+}
+
+ion-title {
+  font-weight: 750;
+}
+
+ion-content {
+  --background: var(--campus-bg);
+  --color: var(--campus-ink);
+}
+
+ion-button {
+  min-height: 2.875rem;
+  margin: 0;
+  --border-radius: 0.875rem;
+  --box-shadow: none;
+  font-weight: 700;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+ion-toast {
+  --background: var(--campus-forest);
+  --color: #fff;
+}
+
+ion-alert {
+  --background: var(--campus-surface);
+}
+
+.campus-layout {
+  width: 100%;
+  max-width: 68rem;
+  margin-inline: auto;
+  padding: clamp(0.75rem, 3vw, 2rem);
+}
+
+.campus-card {
+  margin: 0;
+  border: 1px solid var(--campus-border);
+  border-radius: 1.25rem;
+  --background: var(--campus-surface);
+  --color: var(--campus-muted);
+  box-shadow: var(--campus-shadow);
+
+  ion-card-title {
+    --color: var(--campus-ink);
+    font-size: 1.25rem;
+    font-weight: 750;
+    overflow-wrap: anywhere;
+  }
+}
+
+.campus-section-title {
+  margin: 0;
+  color: var(--campus-ink);
+  font-size: 1.375rem;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+}
+
+.campus-empty {
+  margin: 0;
+  padding: 1.5rem;
+  border: 1px dashed var(--campus-border);
+  border-radius: 1rem;
+  color: var(--campus-muted);
+  text-align: center;
+  line-height: 1.5;
+}

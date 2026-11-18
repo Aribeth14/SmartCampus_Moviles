@@ -1,0 +1,102 @@
+﻿.home-layout {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.welcome {
+  padding: clamp(1.25rem, 5vw, 3rem);
+  border-radius: 1.5rem;
+  background: var(--campus-forest);
+  color: #fff;
+
+  ion-icon {
+    padding: 0.75rem;
+    border-radius: 1rem;
+    background: var(--campus-mint);
+    color: var(--campus-forest);
+    font-size: 1.75rem;
+  }
+
+  h1 {
+    margin: 1.125rem 0 0.5rem;
+    font-size: clamp(1.875rem, 5vw, 3.25rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+
+  p {
+    max-width: 36rem;
+    margin: 0;
+    color: #d5e6dd;
+    line-height: 1.6;
+  }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #547565;
+    color: #e4f3eb;
+    font-size: 0.875rem;
+  }
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 0.875rem;
+  margin-top: 0.75rem;
+}
+
+.module-card {
+  display: block;
+  padding: 1.125rem;
+  border: 1px solid var(--campus-border);
+  border-radius: 1.25rem;
+  background: var(--campus-surface);
+  box-shadow: var(--campus-shadow);
+  color: var(--campus-ink);
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--campus-accent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--campus-accent);
+    outline-offset: 2px;
+  }
+
+  ion-icon {
+    padding: 0.625rem;
+    border-radius: 0.875rem;
+    background: var(--campus-mint);
+    color: #204c39;
+    font-size: 1.375rem;
+  }
+
+  &:nth-child(2) ion-icon {
+    background: var(--campus-amber);
+    color: #65400f;
+  }
+
+  &:nth-child(3) ion-icon {
+    background: var(--campus-rose);
+    color: #713744;
+  }
+
+  h3 {
+    margin: 0.75rem 0 0.25rem;
+    font-size: 1.125rem;
+    font-weight: 750;
+  }
+
+  p {
+    margin: 0;
+    color: var(--campus-muted);
+    line-height: 1.5;
+  }
+}

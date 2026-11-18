@@ -1,0 +1,32 @@
+﻿<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>SmartCampus</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <main class="campus-layout home-layout">
+    <section class="welcome" aria-labelledby="welcome-title">
+      <ion-icon name="school-outline" aria-hidden="true"></ion-icon>
+      <h1 id="welcome-title">Bienvenido a SmartCampus</h1>
+      <p>Organiza tus tareas, consulta el directorio y explora los sensores de tu dispositivo.</p>
+      <footer>
+        <span>{{ integrantes }}</span>
+        <time [attr.datetime]="fecha | date:'yyyy-MM-dd'">{{ fecha | date:'dd/MM/yyyy' }}</time>
+      </footer>
+    </section>
+
+    <section aria-labelledby="modules-title">
+      <h2 id="modules-title" class="campus-section-title">Tus módulos</h2>
+      <div class="module-grid">
+        @for (modulo of modulos; track modulo.ruta) {
+          <a class="module-card" [routerLink]="modulo.ruta">
+            <ion-icon [name]="modulo.icono" aria-hidden="true"></ion-icon>
+            <h3>{{ modulo.titulo }}</h3>
+            <p>{{ modulo.descripcion }}</p>
+          </a>
+        }
+      </div>
+    </section>
+  </main>
+</ion-content>

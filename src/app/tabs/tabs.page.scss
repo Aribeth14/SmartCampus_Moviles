@@ -1,1 +1,25 @@
+﻿ion-tab-bar {
+  --background: var(--campus-surface);
+  --border: 1px solid var(--campus-border);
+  padding-top: 0.375rem;
+}
 
+ion-tab-button {
+  --color: var(--campus-muted);
+  --color-selected: var(--campus-accent);
+  --ripple-color: var(--campus-accent);
+  font-size: 0.75rem;
+  font-weight: 650;
+}
+
+ion-tab-button ion-icon {
+  box-sizing: content-box;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 1.25rem;
+}
+
+ion-tab-button.tab-selected ion-icon {
+  background: var(--campus-mint);
+  color: #205c43;
+}

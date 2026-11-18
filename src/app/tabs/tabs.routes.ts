@@ -1,5 +1,4 @@
-import type { Routes } from '@angular/router';
-
+import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 
 export const routes: Routes = [
@@ -8,27 +7,35 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadComponent: () => import('../tab1/tab1.page').then((m) => m.Tab1Page),
+        path: 'inicio',
+        loadComponent: () =>
+          import('../inicio/inicio.page').then(m => m.InicioPage)
       },
       {
-        path: 'tab2',
-        loadComponent: () => import('../tab2/tab2.page').then((m) => m.Tab2Page),
+        path: 'actividades',
+        loadComponent: () =>
+          import('../actividades/actividades.page').then(m => m.ActividadesPage)
       },
       {
-        path: 'tab3',
-        loadComponent: () => import('../tab3/tab3.page').then((m) => m.Tab3Page),
+        path: 'usuarios',
+        loadComponent: () =>
+          import('../usuarios/usuarios.page').then(m => m.UsuariosPage)
+      },
+      {
+        path: 'dispositivo',
+        loadComponent: () =>
+          import('../dispositivo/dispositivo.page').then(m => m.DispositivoPage)
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
-        pathMatch: 'full',
-      },
-    ],
+        redirectTo: '/tabs/inicio',
+        pathMatch: 'full'
+      }
+    ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
-    pathMatch: 'full',
-  },
+    redirectTo: '/tabs/inicio',
+    pathMatch: 'full'
+  }
 ];
